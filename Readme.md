@@ -18,6 +18,7 @@
 2. 打开`include/comments.html`文件，将多说评论代码复制其中
 3. 将`Farbox-Simple`文件夹重命名为`template`
 4. 将`template`文件夹复制到Farbox根目录
+5. 在Farbox根目录新建`about.md`(关于我)和`links.md`(友情链接)文件，
 5. 进入Farbox设置页面
 6. 点击网站模版，选择使用默认模版
 7. 模版修改完成
