@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if configs.posts and posts%}
+        {% include 'include/description.html' %}
+		<div class="container_16 clearfix">
+	        <div class="grid_10" id="content">
+	        {% include 'include/posts_list.html' %}
+	        </div>
+    	</div>
+
+    {% elif configs.files and files%}
+
+        {% include 'include/files_list.html' %}
+
+    {% endif %}
+{% endblock %}

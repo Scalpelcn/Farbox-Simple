@@ -1,0 +1,12 @@
+{% if post and post.metadata.cover_link %}
+    {% set cover_link = post.metadata.cover_link %}
+{% elif site and site.configs.cover_link %}
+    {% set cover_link = site.configs.cover_link %}
+{% endif %}
+
+<div id="footer" class="container_16 clearfix">
+	<div>Copyright &copy; 2013 {{ site.configs.title }}</div>
+</div>
+<div style="display:none;" class="back-to" id="toolBackTop">
+<a title="返回顶部" href="#top" class="back-top">返回顶部</a>
+</div>

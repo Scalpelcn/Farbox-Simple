@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link rel='alternate' type='application/rss+xml' title='atom 1.0' href='/feed' />
+    <title>{% block title %}{{ site.configs.title or site.title }} {% endblock %}</title>
+    <link rel="stylesheet" href="/template/css/style.min.css">
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/template/js/prettify.js"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<script type="text/javascript">
+$(document).ready(function () {
+  $(".post a").attr("target","_blank");
+  var bt = $('#toolBackTop');
+  var sw = $(document.body)[0].clientWidth;
+  $(window).scroll(function() {
+    var st = $(window).scrollTop();
+    if(st > 30){
+      bt.show();
+    }else{
+      bt.hide();
+    }
+  });
+    $('.back-to a').click(function(){
+      $('body,html').animate({
+       scrollTop: 0
+      }, 800);
+      return false;
+      });
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+  window.prettyPrint && prettyPrint();
+})
+</script>
+
+<body>
+
+{% if site.configs.head_bg %}
+    {% set head_bg = site.configs.head_bg %}
+{% elif post and post.metadata.head_bg%}
+    {% set head_bg = post.metadata.head_bg %}
+{% endif %}
+
+<div id="header" class="container_16 clearfix">
+    <div id="nav_box">
+       <ul id="nav_menu">
+        <li><a href="/">Home</a></li>
+    {% if has('posts') %}
+        <li><a href="/archive">Archive</a></li>
+    {% endif %}
+        {% if has('links.md') %}
+        <li><a href="/links.md">Links</a></li>
+        {% endif %}
+        {% if has('about.md') %}
+        <li><a href="/about.md">About</a></li>
+        {% endif %}
+    </ul> 
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+{% include 'include/footer.html' %}
+{% if site.configs.gid %}
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ site.configs.gid }}']);
+  _gaq.push(['_setDomainName', 'ued.com.cn']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{% endif %}
+
+
+</body>
+</html>
+
+

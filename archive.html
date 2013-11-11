@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% set total_posts = get_posts(limit=300, sort='desc') %}
+{% if request.args.use == 'tags' %}
+    {% set entries = group(total_posts, 'tags') %}
+{% else %}
+    {% set entries = group(total_posts, 'date:year', reverse=True) %}
+{% endif %}
+
+{% block content %}
+<div class="container_16 clearfix">
+    <div class="grid_10" id="content">
+    <div class="post nopost">
+        <h1 class="entry_title">Archive</h1>
+
+    {% for year, posts in entries %}
+        <h3>{{ year }}</h3>
+        <ul class='listing'>
+        {% for post in posts %}
+            <li class="listing-item">
+                <span>{{ post.date | date("%Y-%m-%d") }}</span>
+                <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    {% include 'include/paginator.html' %}
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ tags | join(' ') }}{% endblock %}
+
+{% block content %}
+    <div class="container_16 clearfix">
+	    <div class="grid_10" id="content">
+	    {% include 'include/posts_list.html' %}
+	    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% for post in posts %}
+    <div class="post">
+        <h1 class="entry_title"><a href="{{post.url}}">{{ post.title }}</a></h1>
+        <div class="post_body">
+            {{ post.content | limit(250) }}
+        </div>
+     <div class="info clearfix">
+        <div class="datetime">{{ post.date | date('%Y - %m - %d') }}</div>
+        <div class="read_more"><a href="{{post.url}}">> 阅读全文</a></div>
+	 </div>
+    </div>
+{% endfor %}
+
+{% include 'include/paginator.html' %}
